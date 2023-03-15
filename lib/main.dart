@@ -17,7 +17,8 @@ void main() {
     home: const Homepage(),
     routes: {
       '/register/': (context) => const RegisterView(),
-      '/login/': (context) => const LoginView()
+      '/login/': (context) => const LoginView(),
+      '/notes/': (context) => const NotesView()
     },
   ));
 }
@@ -74,6 +75,7 @@ class _NotesViewState extends State<NotesView> {
                   final shouldLogOut = await showLogOutDialog(context);
                   if (shouldLogOut) {
                     await FirebaseAuth.instance.signOut();
+                    // ignore: use_build_context_synchronously
                     Navigator.of(context)
                         .pushNamedAndRemoveUntil('/login/', (_) => false);
                   }
